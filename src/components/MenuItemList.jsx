@@ -1,37 +1,42 @@
 import { useState, useEffect } from "react";
-import menuJson from "../data/menu.json";
+import * as menuApi from '../api/menu/menu';
 import MenuItemCard from "./MenuItemCard";
-import Search from "./Search";
+import Skeleton from "react-loading-skeleton";
+import MenuItemCardSkeleton from "./MenuItemCardSkeleton";
 
 export default function MenuItemList() {
 
-    const [menuItems, setMenuItems] = useState([]);
-    const [filteredMenuItems, setFilteredMenuItems] = useState([]);
+    const [menu, setMenu] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        setMenuItems(menuJson);
-        setFilteredMenuItems(menuJson);
+        setLoading(true);
+        setError(null);
+
+        const fetchMenuList = async () => {
+            try {
+                const data = await menuApi.getMenu();
+                setMenu(data);
+            }catch (error) {
+                console.error('An error loading:', error);
+                setError(error.message || 'Failed to load menu. Please try again later.');
+            }finally {
+                setLoading(false);
+            }
+        };
+            fetchMenuList();
       }, []);
 
-      const handleSearch = (query) => {
-        setFilteredMenuItems(menuItems.filter(item => {
-            return item.name.toLowerCase().includes(query.toLowerCase())
-        }));
-      };
 
     return(
+        <div>
+            {loading && <MenuItemCardSkeleton cards={6}/>}
+            {error && <p>Error: {error}</p>}
 
-    <div>
-        {/* {menuItems.map((menuItem) => (
-            <MenuItemCard key={menuItem.id} menuItem={menuItem} />
-        ))}    */}
-
-        <Search onSearch={handleSearch} />
-        
-        {filteredMenuItems.map((menuItem) => (
-            <MenuItemCard key={menuItem.id} menuItem={menuItem} />
-        ))}
-
-    </div>
+            {menu.map((item) => (
+            <MenuItemCard key={item.id} menuItem={item || <Skeleton />} />
+            ))}
+        </div>
     )
 }

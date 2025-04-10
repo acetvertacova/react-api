@@ -1,0 +1,79 @@
+.App {
+    text-align: center;
+    width: 95%;
+    max-width: 800px;
+    margin: 6rem auto 0;
+  }
+  
+  .user-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+  .user-card {
+    display: flex;
+    padding: 0.5rem;
+    border: 1px solid #91766E;
+    transition: all 0.25s ease;
+    position: relative;  
+    background-color: #F3ECE3;
+}
+  
+  .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: 2rem;
+  }
+  
+  .info {
+    text-align: left;
+    margin-left: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .info h3,
+  .info p {
+    margin-bottom: 0.5rem;
+  }
+    
+  .cart-button-container {
+    position: absolute; 
+    bottom: 6rem; 
+    right: 1rem; 
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-button {
+    padding: 0.5rem 1rem;
+    background-color: #C8A19C;
+    color: #F3ECE3;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .cart-button:hover {
+    background-color: #c6bebd;
+  }
+
+  .card-skeleton {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+
+  .card-skeleton .left-col {
+    margin-right: 1rem;
+  }
+
+  .card-skeleton .right-col {
+    flex: 0.5rem;
+  }
+  

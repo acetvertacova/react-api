@@ -1,2 +1,19 @@
 @import 'tailwindcss';
 
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  h1 {
+    color: #F3ECE3;
+  }
+
+  h3 {
+    color: #000000;
+  }
+  
+  p{
+    color: #91766E;
+  }
+  
