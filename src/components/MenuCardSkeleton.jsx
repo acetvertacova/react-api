@@ -1,6 +1,6 @@
 import Skeleton from "react-loading-skeleton";
 
-export default function MenuItemCardSkeleton({cards}) {
+export default function MenuCardSkeleton({cards}) {
     return(
         Array(cards)
             .fill(0)
