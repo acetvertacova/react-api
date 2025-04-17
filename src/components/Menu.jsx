@@ -3,6 +3,7 @@ import * as menuApi from '../api/menu/menu';
 import MenuCard from "./MenuCard";
 import MenuCardSkeleton from "./MenuCardSkeleton";
 import Search from "./Search";
+import Skeleton from "react-loading-skeleton";
 
 export default function Menu() {
     const [menu, setMenu] = useState([]);
@@ -26,9 +27,7 @@ export default function Menu() {
                 setLoading(false);
             }
         };
-
         fetchMenu();
-
     }, []);
 
     const handleSearch = (query) => {

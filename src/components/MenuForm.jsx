@@ -28,7 +28,6 @@ export default function MenuForm() {
 
   useEffect(() => {
     setError(false);
-
     if (id) {
       const fetchMenuItem = async () => {
         const data = await menuApi.getMenuItemById(id);
@@ -47,7 +46,6 @@ export default function MenuForm() {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
       if (id) {
         await menuApi.updateMenuItem(id, data);
       } else {
