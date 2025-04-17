@@ -8,19 +8,13 @@ import schema from "../validation/menu.schema";
 export default function MenuForm() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [menuItem, setMenuItem] = useState({
-    name: '',
-    description: '',
-    price: '',
-    image: '',
-    category: '',
-    sizes: [],
-  });
+  const [error, setError] = useState(null);
 
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -33,22 +27,37 @@ export default function MenuForm() {
   });
 
   useEffect(() => {
+    setError(false);
+
     if (id) {
       const fetchMenuItem = async () => {
         const data = await menuApi.getMenuItemById(id);
-        setMenuItem(data);
+        reset({
+          name: data[0].name,
+          description: data[0].description,
+          price: data[0].price,
+          image: data[0].image,
+          category: data[0].category,
+          sizes: data[0].sizes || []
+        });
       };
       fetchMenuItem();
     }
-  }, [id]);
+  }, [id, reset]);
 
   const onSubmit = async (data) => {
-    if (id) {
-      await menuApi.updateMenuItem(id, data);
-    } else {
-      await menuApi.createMenuItem(data);
+    try {
+      console.log(data);
+      if (id) {
+        await menuApi.updateMenuItem(id, data);
+      } else {
+        await menuApi.createMenuItem(data);
+      }
+      navigate('/');
+    } catch (error) {
+      console.error('An error loading:', error);
+      setError(error.message || 'Failed to load menu. Please try again later.');
     }
-    navigate('/');
   };
 
   return (
