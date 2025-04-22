@@ -20,32 +20,32 @@ Master creating forms in React, learning to manage user input and perform valida
 
 ## Project Structure
 
-   src/
-    │── assets/
-    │── layouts/
-    │   │── MainLayout.jsx
-    │── components/
-    │   │── Footer.jsx
-    │   │── Header.jsx
-    │   │── MenuCard.jsx
-    │   │── Menu.jsx
-    │   │── MenuCardSkeleton.jsx
-    │   │── Search.jsx
-    │   │── MenuForm.jsx
-    │── pages/
-    │   │── AboutPage.jsx
-    |   │── CartPage.jsx
-    |   │── NotFoundPage.jsx
-    |   │── ProductPage.jsx
-    |── validation/
-    │   │── menu.schema.js
-    |── api/
-    │   │── menu/
-    |   │   │── menu.js
-    |   |── api.js
-    │── App.jsx
-    │── main.jsx
-    |── ...
+       src/
+        │── assets/
+        │── layouts/
+        │   │── MainLayout.jsx
+        │── components/
+        │   │── Footer.jsx
+        │   │── Header.jsx
+        │   │── MenuCard.jsx
+        │   │── Menu.jsx
+        │   │── MenuCardSkeleton.jsx
+        │   │── Search.jsx
+        │   │── MenuForm.jsx
+        │── pages/
+        │   │── AboutPage.jsx
+        |   │── CartPage.jsx
+        |   │── NotFoundPage.jsx
+        |   │── ProductPage.jsx
+        |── validation/
+        │   │── menu.schema.js
+        |── api/
+        │   │── menu/
+        |   │   │── menu.js
+        |   |── api.js
+        │── App.jsx
+        │── main.jsx
+        |── ...
 
 ## Usage Examples
 
