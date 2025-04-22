@@ -399,12 +399,12 @@ APIs work in a simple step-by-step process:
 
 REST (Representational State Transfer) is a simple, flexible API *architecture* that uses HTTP methods (GET, POST, PUT, DELETE) for communication.
 
-|**Feature**      | **API**                                           | **REST API**                              |
-|-----------------|-----------------------------------------------------------------------------------------------|
-|**Definition**   |A set of rules and specifications that define how  | An architectural style for designing APIs |
-|                 |software components should interact with each other|                                           |
-|**Data formats** |              JSON, XML, and YAML                  |           Primarily uses JSON             |
-|**Statelessness**|         Can be stateful or stateless              |                 Stateless                 |
+    |**Feature**      | **API**                                           | **REST API**                              |
+    |-----------------|-----------------------------------------------------------------------------------------------|
+    |**Definition**   |A set of rules and specifications that define how  | An architectural style for designing APIs |
+    |                 |software components should interact with each other|                                           |
+    |**Data formats** |              JSON, XML, and YAML                  |           Primarily uses JSON             |
+    |**Statelessness**|         Can be stateful or stateless              |                 Stateless                 |
 
 4. How to organize data fetching from the server when the component mounts?
 
