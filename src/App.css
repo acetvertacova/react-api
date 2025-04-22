@@ -31,15 +31,16 @@
   margin-bottom: 0.5rem;
 }
 
-.cart-button-container {
+.button-container {
   position: absolute;
   bottom: 6rem;
   right: 1rem;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.cart-button {
+.button {
   padding: 0.5rem 1rem;
   background-color: #C8A19C;
   color: #F3ECE3;
@@ -49,17 +50,17 @@
   cursor: pointer;
 }
 
-.cart-button:hover {
+.button:hover {
   background-color: #c6bebd;
 }
 
 .card-skeleton {
   display: flex;
-  width: 100%;
-  height: 100%;
   padding: 0.5rem;
-  border: 1px solid gray;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  height: auto;
 }
 
 .card-skeleton .left-col {
@@ -67,5 +68,55 @@
 }
 
 .card-skeleton .right-col {
-  flex: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-skeleton {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #F3ECE3;
+  padding: 2rem;
+  border: 1px solid #91766E;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #91766E;
+}
+
+form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #C8A19C;
+  box-shadow: 0 0 0 2px rgba(200, 161, 156, 0.2);
+}
+
+.form-error {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }

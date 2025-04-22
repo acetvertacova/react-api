@@ -6,7 +6,7 @@ export const getMenu = async () => {
 };
 
 export const getMenuItemById = async (id) => {
-  const response = await api.get(`/menu/?id=${id}`);
+  const response = await api.get(`/menu/${id}`);
   return response.data;
 };
 
@@ -16,7 +16,7 @@ export const createMenuItem = async (menuItem) => {
 };
 
 export const updateMenuItem = async (id, menuItem) => {
-  const response = await api.put(`/menu/?id=${id}`, menuItem);
+  const response = await api.put(`/menu/${id}`, menuItem);
   return response.data;
 };
 

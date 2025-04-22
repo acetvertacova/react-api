@@ -11,7 +11,10 @@ function App() {
     <Routes>
       <Route element={<MainLayout />} >
         <Route index element={<Menu />} />
-        <Route path='/form/:id?' element={<MenuForm />} />
+        <Route path='form'>
+          <Route path='create' element={<MenuForm />} />
+          <Route path=':id/edit' element={<MenuForm />} />
+        </Route>
         <Route path='/product/:id' element={<ProductPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>

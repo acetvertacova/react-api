@@ -5,10 +5,17 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schema from "../validation/menu.schema";
 
+/**
+ * MenuForm component for creating or editing a menu item.
+ * Uses react-hook-form for form state management and validation with Yup.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered MenuForm component.
+ */
 export default function MenuForm() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [error, setError] = useState(null);
+  const { id } = useParams(); // ID from URL parameters (used for edit mode)
+  const navigate = useNavigate(); // React Router navigation
+  const [error, setError] = useState(null); // Error message for submission failure
 
   const {
     register,
@@ -17,33 +24,41 @@ export default function MenuForm() {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
+    resolver: yupResolver(schema), // Form validation using Yup schema
+    mode: "onChange", // Real-time validation
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "sizes",
+    name: "sizes", // Handles dynamic list of sizes
   });
 
+  /**
+  * Fetches menu item data for editing and populates the form.
+  */
   useEffect(() => {
-    setError(false);
+    setError(null);
     if (id) {
       const fetchMenuItem = async () => {
         const data = await menuApi.getMenuItemById(id);
         reset({
-          name: data[0].name,
-          description: data[0].description,
-          price: data[0].price,
-          image: data[0].image,
-          category: data[0].category,
-          sizes: data[0].sizes || []
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          image: data.image,
+          category: data.category,
+          sizes: data.sizes || []
         });
       };
       fetchMenuItem();
     }
   }, [id, reset]);
 
+  /**
+   * Handles form submission: creates or updates a menu item.
+   * 
+   * @param {Object} data - The form data to submit.
+   */
   const onSubmit = async (data) => {
     try {
       if (id) {
@@ -59,54 +74,52 @@ export default function MenuForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
+    <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
+      <div className="form-group">
         <label>Name:</label>
-        <input type="text" {...register("name")} />
-        {errors.name && <div>{errors.name.message}</div>}
+        <input className="form-input" type="text" {...register("name")} />
+        {errors.name && <div className="form-error">{errors.name.message}</div>}
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Description:</label>
-        <input type="text" {...register("description")} />
-        {errors.description && <div>{errors.description.message}</div>}
+        <input className="form-input" type="text" {...register("description")} />
+        {errors.description && <div className="form-error">{errors.description.message}</div>}
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Price:</label>
-        <input type="text" {...register("price")} />
-        {errors.price && <div>{errors.price.message}</div>}
+        <input className="form-input" type="text" {...register("price")} />
+        {errors.price && <div className="form-error">{errors.price.message}</div>}
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Image:</label>
-        <input type="text" {...register("image")} />
-        {errors.image && <div>{errors.image.message}</div>}
+        <input className="form-input" type="text" {...register("image")} />
+        {errors.image && <div className="form-error">{errors.image.message}</div>}
       </div>
 
-      <div>
+      <div className="form-group">
         <label>Category:</label>
-        <input type="text" {...register("category")} />
-        {errors.category && <div>{errors.category.message}</div>}
+        <input className="form-input" type="text" {...register("category")} />
+        {errors.category && <div className="form-error">{errors.category.message}</div>}
       </div>
 
-      <label>Sizes:</label>
-      {fields.map((field, index) => (
-        <div key={field.id}>
-          <input {...register(`sizes.${index}`)} defaultValue={field.value} />
-          {errors.sizes && errors.sizes[index] && (
-            <p>{errors.sizes[index].message}</p>
-          )}
-          <button type="button" onClick={() => remove(index)}>
-            Delete
-          </button>
-        </div>
-      ))}
-      <button type="button" onClick={() => append("")}>
-        Add
-      </button>
+      <div className="form-group">
+        <label>Sizes:</label>
+        {fields.map((field, index) => (
+          <div key={field.id}>
+            <input className="form-input" {...register(`sizes.${index}`)} defaultValue={field.value} />
+            {errors.sizes && errors.sizes[index] && (
+              <p className="form-error">{errors.sizes[index].message}</p>
+            )}
+            <button className="button" type="button" onClick={() => remove(index)}>Delete</button>
+          </div>
+        ))}
+        <button className="button" type="button" onClick={() => append("")}>Add</button>
+      </div>
 
-      <button type="submit">{id ? 'Update' : 'Create'}</button>
+      <button className="button" type="submit">{id ? 'Update' : 'Create'}</button>
     </form>
   );
 }
