@@ -196,7 +196,7 @@ const onSubmit = async (data) => {
 
 `useForm` is a custom hook for managing forms with ease. The hook is used to handle form state, input registration, and validation in a React component.
 
-    ```jsx
+```jsx
     const {
     register, //Used to connect input fields to the form system
     handleSubmit, //The function that handles the form submission
@@ -207,7 +207,7 @@ const onSubmit = async (data) => {
     resolver: yupResolver(schema), //Connects Yup validation schema to the form
     mode: "onChange", //Validation runs as the user types or edits each field
     });
-    ```
+```
 
 *Yup*
 
